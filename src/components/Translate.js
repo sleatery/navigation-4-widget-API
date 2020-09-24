@@ -8,17 +8,14 @@ const options = [
 {
     label: 'Afrikaans',
     value: 'af'
-
 },
 {
     label: 'Arabic',
     value: 'ar'
-
 },
 {
     label: 'Hindi',
     value: 'hi'
-
 },
 {
     label: 'Vietnamese',
@@ -38,12 +35,13 @@ return (
         <input type="text" value={text} onChange={(event) => {setText(event.target.value)}}/>
         </div>
         </div>
+        <hr/>
+
         <Dropdown 
         label="Chọn ngôn ngữ"
         selected={language}
         onSelectedChange={setLanguage}
         options={options}/> 
-        <hr/>
         <h3 className="ui header">Output</h3>
         <Convert 
         language={language}

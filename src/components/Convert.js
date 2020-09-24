@@ -3,6 +3,18 @@ import axios from 'axios';
 
 const Convert = (props) => {
     const [translated, setTranslated] = useState('');
+    const [debouncedText, setDebouncedText] = useState(props.text);
+
+    useEffect(() => {
+
+        const timerID = setTimeout(() => {
+            setDebouncedText(props.text);
+        }, 500);
+
+        return () => {
+            clearTimeout(timerID);
+        };
+    }, [props.posttext]);
 
     useEffect(() => {
         const doTranslation = async () => {
@@ -19,7 +31,7 @@ const Convert = (props) => {
                 setTranslated(data.data.translations[0].translatedText);
             };
             doTranslation();
-     }, [props.language, props.text]);
+     }, [props.language, debouncedText]);
 
     return <div>
         <h1 className="ui header">{translated}</h1>
